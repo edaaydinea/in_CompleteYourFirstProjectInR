@@ -63,7 +63,7 @@ fviz_nbclust(scaled_data, kmeans, method = "silhouette")
 ```{r}
 ##EDIT THIS BLOCK OF CODE
 #run k-means algorithm for best # of clusters
-km <- 
+km <- kmeans(scaled_data, centers = 2, nstart = 25)
 km
 ```
 
@@ -93,7 +93,7 @@ final_data %>% group_by(cluster)  %>%
 ```{r}
 ##EDIT THIS BLOCK OF CODE
 #evaluate Sales.Region by cluster
-
+table(final_data$cluster, final_data$Sales.Region)
 ```
 
 ```{r}

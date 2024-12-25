@@ -20,7 +20,8 @@ install.packages("caret")
 
 ```{r}
 #import packages
-
+library(lattice)
+library(caret)
 ```
 
 ```{r}
@@ -32,18 +33,23 @@ sales_subset <- subset(sales, select = c(Employee.Job.Title , Sales.Region , Ord
 
 ```{r}
 #remove null values
-
+sales_subset <- na.omit(sales_subset)
+summary(sales_subset)
 ```
 
 
 ```{r}
 #encode dummy variables
-
+dummy_var <- dummyVars(" ~ .", data = sales_subset)
+trsf <- data.frame(predict(dummy_var, newdata = sales_subset))
+trsf
 ```
 
 
 ```{r}
 #normalize data
-
+trsf.pre <- preProcess(trsf, method="range")
+scaled_data <- predict(trsf.pre, trsf)
+summary(scaled_data)
 ```
 
