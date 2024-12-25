@@ -49,26 +49,28 @@ test
 
 ```{r}
 #tune svm model
-
-
-
-
-
-
+obj <- tune.svm(Payment.Status~., data = train,
+                cost = c(1, 5, 10, 20, 100),
+                gamma = c(0.01,0.1, 0.5, 1, 5, 10),
+                 type = 'C-classification', 
+                 kernel = 'linear')
+summary(obj)
 ```
 
 
 ```{r}
 #run tuned svm model
-
-
-
-
+new_classifier <- svm(formula = Payment.Status ~ ., 
+                 data = train, 
+                 cost = 10,
+                 gamma = 0.01,
+                 type = 'C-classification', 
+                 kernel = 'sigmoid') 
 ```
 
 ```{r}
 #get classifier summary
-
+summary(new_classifier)
 ```
 
 ```{r}

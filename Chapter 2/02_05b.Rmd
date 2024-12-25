@@ -29,29 +29,33 @@ summary(test)
 
 ```{r}
 #install package if needed
-
+install.packages("e1071")
 ```
 
 
 ```{r}
 #load package
-
+library(e1071)
 ```
 
 
 ```{r}
 #create SVM model
-
+classifier <- svm(formula = Payment.Status ~ ., 
+                 data = train, 
+                 type = 'C-classification', 
+                 kernel = 'linear')
 ```
 
 ```{r}
 #get summary of classifier
-
+summary(classifier)
 ```
 
 ```{r}
 #predict on model
-
+test$test_pred_svm <- predict(classifier,test)
+test
 ```
 
 
